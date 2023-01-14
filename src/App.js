@@ -68,7 +68,7 @@ class App extends React.Component {
                       <ListGroup.Item>Latitude: {this.state.cityData.lat}</ListGroup.Item>
                       <ListGroup.Item>Longitude: {this.state.cityData.lon}</ListGroup.Item>
                     </ListGroup>
-                    <Image src={this.state.cityMap}></Image>
+                    <Image src={this.state.mapImage}></Image>
                   </Container>
               }
       
