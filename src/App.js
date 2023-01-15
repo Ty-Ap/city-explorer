@@ -7,6 +7,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
+import Weather from './components/Weather';
+import Movies from './components/Movies';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +19,9 @@ class App extends React.Component {
       cityData: [],
       error: false,
       errorMessage: '',
+      mapImage: '',
+      weatherData:[],
+      MovieData:[],
     }
   }
   handleInput = (event) => {
@@ -34,6 +40,13 @@ class App extends React.Component {
 
       let mapImage= `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=10`;
 
+
+      let lat = cityDataFromAxios.data[0].lat;
+      let lon =cityDataFromAxios.data[0].lon;
+
+      this.handleGetWeather(lat,lon);
+      this.handleGetMovies();
+
       this.setState({
         cityData: cityDataFromAxios.data[0],
         mapImage: mapImage,
@@ -47,6 +60,42 @@ class App extends React.Component {
       })
     }
   }
+
+    handleGetWeather=async (lat,lon)=>{
+      try {
+        let url =`${process.env.REACT_APP_SERVER}/weather?lat=${lat}&lon=${lon}&searchQuery=${this.state.city}`
+        let weatherDataFromAxios = await axios.get(url);
+        
+        this.setState({
+          weatherData: weatherDataFromAxios.data
+        })
+      } catch (error) {
+        this.setState({
+          error:true,
+          errorMessage:`${error.message}`
+        })
+        
+      }
+    }
+
+    handleGetMovies = async () => {
+      try {
+        let url = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+  
+        let movieDataFromAxios = await axios.get(url);
+  
+        this.setState({
+          movieResults: movieDataFromAxios.data
+        })
+      } catch (error) {
+        this.setState({
+          error: true,
+          errorMessage: `${error.message}`
+        })
+      }
+    }
+
+
   render() {
     return (
       <>
@@ -71,7 +120,12 @@ class App extends React.Component {
                     <Image src={this.state.mapImage}></Image>
                   </Container>
               }
-      
+                <Weather 
+          weatherData={this.state.weatherData}
+        />
+        <Movies
+        movieResults={this.state.movieResults}
+        />
             </>
           );
         }
