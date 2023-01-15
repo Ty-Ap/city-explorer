@@ -7,8 +7,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
-import Weather from './components/Weather';
-import Movies from './components/Movies';
+import Weather from './components/weather.js';
+import Movies from './components/movie.js';
 
 
 class App extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
-import './Weather.css';
+// import './Weather.css';
 
 class Weather extends React.Component {
   render() {
