@@ -7,7 +7,7 @@ class Movies extends React.Component {
 
     return (
       <>
-        {this.props.movieResults.map((movie, index) => {
+        {this.props.movieData.map((movie, index) => {
           return <ListGroup.Item key={index}>{movie.title}, {movie.release_date}</ListGroup.Item>
         })
         }
