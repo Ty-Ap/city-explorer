@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
-import './Movies.css';
+// import './Movies.css';
 
 class Movies extends React.Component {
   render() {
