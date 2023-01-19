@@ -30,12 +30,41 @@ assisted by [Brennan Malone](https://github.com/brennan-malone)
 Time Estimates
 For each of the lab features, make an estimate of the time it will take you to complete the feature, and record your start and finish times for that feature:
 
-Name of feature: ________________________________
+Name of feature: initialization and dependencies
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 15 min
 
-Start time: _____
+Start time: 330
 
-Finish time: _____
+Finish time: 345
 
-Actual time needed to complete: _____
+Actual time needed to complete: 15 min
+
+Name of feature: location
+
+Estimate of time needed to complete: 1hr
+
+Start time: 345
+
+Finish time: 5
+
+Actual time needed to complete: 1.25hr
+
+Name of feature: map
+Estimate of time needed to complete: 20 min
+
+Start time: 515
+
+Finish time: 719 lots of errors from changing api key aaaaaaaaaa
+
+Actual time needed to complete: 2hr. conceptually though, its just refactoring the same component a little.
+
+Name of feature: error message
+
+Estimate of time needed to complete: 30 min
+
+Start time: did early to help along the way. 345
+
+Finish time: 5
+
+Actual time needed to complete: i would say 30 min , but end time was same as location, as they were developed concurrently.
