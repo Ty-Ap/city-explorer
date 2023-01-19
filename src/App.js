@@ -90,7 +90,6 @@ class App extends React.Component {
           movieResults: movieDataFromAxios.data
         })
       } catch (error) {
-        Next(error)
         this.setState({
           error: true,
           errorMessage: `${error.message}`
