@@ -9,7 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 import Weather from './components/Weather.js';
 import Movies from './components/Movies.js';
-import { Next } from 'react-bootstrap/esm/PageItem';
+
 
 
 class App extends React.Component {
@@ -21,8 +21,8 @@ class App extends React.Component {
       error: false,
       errorMessage: '',
       mapImage: '',
-      weatherData:[],
-      movieResults:[],
+      weatherData: [],
+      movieResults: [],
     }
   }
 
@@ -41,13 +41,13 @@ class App extends React.Component {
       let cityDataFromAxios = await axios.get(url)
 
 
-      let mapImage= `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=10`;
+      let mapImage = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=10`;
 
 
       let lat = cityDataFromAxios.data[0].lat;
-      let lon =cityDataFromAxios.data[0].lon;
+      let lon = cityDataFromAxios.data[0].lon;
 
-      this.handleGetWeather(lat,lon);
+      this.handleGetWeather(lat, lon);
       this.handleGetMovies();
 
       this.setState({
@@ -63,39 +63,39 @@ class App extends React.Component {
     }
   }
 
-    handleGetWeather= async (lat,lon)=>{
-      try {
-        let url =`${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}&lat=${lat}&lon=${lon}`
-        let weatherDataFromAxios = await axios.get(url);
-        
-        this.setState({
-          weatherData: weatherDataFromAxios.data
-        })
-      } catch (error) {
-        this.setState({
-          error: true,
-          errorMessage: `${error.message}`
-        })
-        
-      }
-    }
+  handleGetWeather = async (lat, lon) => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}&lat=${lat}&lon=${lon}`
+      let weatherDataFromAxios = await axios.get(url);
 
-    handleGetMovies = async () => {
-      try {
-        let url = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
-  
-        let movieDataFromAxios = await axios.get(url);
-  
-        this.setState({
-          movieResults: movieDataFromAxios.data
-        })
-      } catch (error) {
-        this.setState({
-          error: true,
-          errorMessage: `${error.message}`
-        })
-      }
+      this.setState({
+        weatherData: weatherDataFromAxios.data
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `${error.message}`
+      })
+
     }
+  }
+
+  handleGetMovies = async () => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+
+      let movieDataFromAxios = await axios.get(url);
+
+      this.setState({
+        movieResults: movieDataFromAxios.data
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `${error.message}`
+      })
+    }
+  }
 
 
   render() {
@@ -110,28 +110,28 @@ class App extends React.Component {
             <Button type='submit'>Explore!</Button>
           </Form.Group>
         </Form>
-               {
-                this.state.error
-                  ? <Alert variant="warning">{this.state.errorMessage}</Alert>
-                  : <Container>
-                    <ListGroup as='list-group'>
-                      <ListGroup.Item>City: {this.state.cityData.display_name}</ListGroup.Item>
-                      <ListGroup.Item>Latitude: {this.state.cityData.lat}</ListGroup.Item>
-                      <ListGroup.Item>Longitude: {this.state.cityData.lon}</ListGroup.Item>
-                    </ListGroup>
-                    <Image src={this.state.mapImage}></Image>
-                  </Container>
-              }
-                <Weather 
+        {
+          this.state.error
+            ? <Alert variant="warning">{this.state.errorMessage}</Alert>
+            : <Container>
+              <ListGroup as='list-group'>
+                <ListGroup.Item>City: {this.state.cityData.display_name}</ListGroup.Item>
+                <ListGroup.Item>Latitude: {this.state.cityData.lat}</ListGroup.Item>
+                <ListGroup.Item>Longitude: {this.state.cityData.lon}</ListGroup.Item>
+              </ListGroup>
+              <Image src={this.state.mapImage}></Image>
+            </Container>
+        }
+        <Weather
           weatherData={this.state.weatherData}
         />
         <Movies
-        movieResults={this.state.movieResults}
+          movieResults={this.state.movieResults}
         />
-            </>
-          );
-        }
-      }
+      </>
+    );
+  }
+}
 
 
 export default App;
