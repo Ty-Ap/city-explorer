@@ -48,7 +48,7 @@ class App extends React.Component {
       let lon = cityDataFromAxios.data[0].lon;
 
       this.handleGetWeather(lat, lon);
-      this.handleGetMovies();
+      this.handleGetMovies(cityDataFromAxios);
 
       this.setState({
         cityData: cityDataFromAxios.data[0],
