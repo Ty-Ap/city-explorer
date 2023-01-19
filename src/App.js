@@ -9,6 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 import Weather from './components/Weather.js';
 import Movies from './components/Movies.js';
+import { Next } from 'react-bootstrap/esm/PageItem';
 
 
 class App extends React.Component {
@@ -24,11 +25,13 @@ class App extends React.Component {
       movieResults:[],
     }
   }
+
   handleInput = (event) => {
     this.setState({
       city: event.target.value
     })
   }
+
   getCityData = async (event) => {
     event.preventDefault();
 
@@ -52,7 +55,6 @@ class App extends React.Component {
         mapImage: mapImage,
         error: false
       })
-
     } catch (error) {
       this.setState({
         error: true,
@@ -71,8 +73,8 @@ class App extends React.Component {
         })
       } catch (error) {
         this.setState({
-          error:true,
-          errorMessage:`${error.message}`
+          error: true,
+          errorMessage: `${error.message}`
         })
         
       }
@@ -88,6 +90,7 @@ class App extends React.Component {
           movieResults: movieDataFromAxios.data
         })
       } catch (error) {
+        Next(error)
         this.setState({
           error: true,
           errorMessage: `${error.message}`
