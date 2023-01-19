@@ -7,8 +7,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
-import Weather from './components/weather.js';
-import Movies from './components/movie.js';
+import Weather from './components/Weather.js';
+import Movies from './components/Movies.js';
 
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
       errorMessage: '',
       mapImage: '',
       weatherData:[],
-      MovieData:[],
+      movieResults:[],
     }
   }
   handleInput = (event) => {
