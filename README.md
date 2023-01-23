@@ -68,3 +68,17 @@ Start time: did early to help along the way. 345
 Finish time: 5
 
 Actual time needed to complete: i would say 30 min , but end time was same as location, as they were developed concurrently.
+
+WRRC pic final
+
+![Alt text](WRRC-FINAL.JPG)
+
+Name of feature:weather-day
+
+Estimate of time needed to complete: 1hr
+
+Start time: 730
+
+Finish time: 750
+
+Actual time needed to complete: 20 mins

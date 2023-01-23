@@ -41,14 +41,14 @@ class App extends React.Component {
       let cityDataFromAxios = await axios.get(url)
 
 
-      let mapImage = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=10`;
+      let mapImage = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=15`;
 
 
       let lat = cityDataFromAxios.data[0].lat;
       let lon = cityDataFromAxios.data[0].lon;
 
       this.handleGetWeather(lat, lon);
-      this.handleGetMovies(cityDataFromAxios);
+      this.handleGetMovies();
 
       this.setState({
         cityData: cityDataFromAxios.data[0],
@@ -101,7 +101,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>One Day the Only Butterflies Left Will Be in Your Chest</h1>
+        <h1>Search-A-City</h1>
 
         <Form onSubmit={this.getCityData}>
           <Form.Group>
@@ -128,6 +128,7 @@ class App extends React.Component {
         <Movies
           movieResults={this.state.movieResults}
         />
+        
       </>
     );
   }
